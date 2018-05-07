@@ -11,11 +11,19 @@ var server = http.createServer(app);
 var io = socketIO(server);
 
 io.on('connection',(socket)=>{
-    console.log('New user connected');
+    socket.emit('welcomeMessage','Welcome To the chat Application');
+  socket.broadcast.emit('newMessage','new User signed in');
 
     socket.on('createMessage',(message)=>{
       console.log('createMessage',message);
-    io.emit('newMessage',{
+
+
+
+      //socket.emit only for single connection who asked for
+      //io.emit send for all connections
+      //socket.broadcast.emit for all connections except for the one submitted
+
+    socket.broadcast.emit('newMessage',{
       from:message.from,
       text:message.text,
       createdAt: new Date().getTime()

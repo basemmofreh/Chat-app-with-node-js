@@ -10,21 +10,21 @@ e.preventDefault();
     email:document.getElementById('emailInput').value,
     text:document.getElementById('textInput').value
   }
-
-
-
   socket.on('newEmail',function(data){
     document.querySelector('.textMsg').innerHTML= 'From ' +data.email + ' Text : ' +data.text +' AT :'+' <p>'+data.time+ '</p>';
-
   })
-
-
 })
 
 
 socket.on('newMessage',function(data){
-    console.log(data);
+alert(JSON.stringify(data));
+console.log(JSON.stringify(data));
 })
+
+socket.on('welcomeMessage',function(msg){
+  document.getElementsByTagName('h1')[0].innerHTML+=msg;
+});
+
 
 });
 
