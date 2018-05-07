@@ -11,13 +11,19 @@ e.preventDefault();
     text:document.getElementById('textInput').value
   }
 
-  socket.emit('createEmail',data)
 
 
   socket.on('newEmail',function(data){
     document.querySelector('.textMsg').innerHTML= 'From ' +data.email + ' Text : ' +data.text +' AT :'+' <p>'+data.time+ '</p>';
 
   })
+
+
+})
+
+
+socket.on('newMessage',function(data){
+    console.log(data);
 })
 
 });
