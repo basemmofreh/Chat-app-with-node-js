@@ -4,6 +4,7 @@ const socketIO = require('socket.io');
 const http = require('http');
 const app = express();
 const publicPath = path.join(__dirname,'../public')
+const {generateMsg} = require('./utils/message');
 
 const port = process.env.PORT || 3000;
 app.use(express.static(publicPath));
@@ -23,11 +24,7 @@ io.on('connection',(socket)=>{
       //io.emit send for all connections
       //socket.broadcast.emit for all connections except for the one submitted
 
-    socket.broadcast.emit('newMessage',{
-      from:message.from,
-      text:message.text,
-      createdAt: new Date().getTime()
-    });
+    io.emit('newMessage',generateMsg('admin','welcome to the chat app'));
   });
 
     socket.on('disconnect',()=>{
