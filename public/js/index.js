@@ -6,9 +6,16 @@ socket.on('connect',function(){
 })
 
 socket.on('newMessage',function(data){
-$('#chat').append('<li>'+'From : '+data.from+' msg: '+data.text+'</li>')
+
+  if(data.from==$('#emailInput').val()&&data.from!='Admin')
+    $('#chat').append('<li class="blue left">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>')
+  else if(data.from==='Admin')
+    $('#chat').append('<li class="green">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>')
+    else {
+  $('#chat').append('<li class="yellow right">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>')
+
 console.log(JSON.stringify(data));
-})
+}})
 
 socket.on('welcomeMessage',function(msg){
   document.getElementsByTagName('h1')[0].innerHTML+=msg;
@@ -31,6 +38,7 @@ e.preventDefault();
     from:$('#emailInput').val(),
     text:$('#textInput').val()
   },function(){
+    $('#textInput').val("");
     console.log('Sent at : ',new Date().toString());
   });
 

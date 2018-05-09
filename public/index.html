@@ -9,19 +9,73 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
   <title>Document</title>
+  <style>
+    .green{
+      color: green;
+      width: inherit;
+    }
+    .blue{
+      color: blue;
+      width: inherit;
+    }
+    .yellow{
+      color: red;
+      width: inherit;
+    }
+
+    li{
+      width: 600px !important;
+      background-color: #f1f1f1;
+      padding: 5px;
+      border-radius: 0.3em;
+      display: block;
+      margin: 5px;
+      position: relative;
+    }
+    .left{
+      float:left !important;
+      display: block !important;
+    }
+
+    .right{
+    float:right !important;
+        display: block !important;
+    }
+  span{
+          float: right !important;
+          font-size: 10px;
+          color: black;
+          margin: 4px;
+    }
+    #chat{
+      width: 100% !important;
+      display: block;
+      position: relative;
+
+    }
+    #emailForm{
+      background-color: #f1f1f1;
+      border-radius: 1.3em;
+      padding: 20px;
+      position: fixed;
+      bottom :0px;
+      left: 30%;
+    }
+  </style>
 </head>
 <body>
+  <ol id="chat">
 
+  </ol>
   <h1></h1>
+
   <form action="" id="emailForm">
     <input type="email" placeholder="Email address" id="emailInput">
     <input type="text" placeholder="text" id="textInput">
     <input type="submit" value="submit" id='send'>
   </form>
 
-  <ol id="chat">
 
-  </ol>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/index.js"></script>
 </body>
