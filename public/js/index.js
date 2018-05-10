@@ -9,7 +9,13 @@ socket.on('connect',function(){
 
 socket.on('newMessage',function(data){
 console.log(JSON.stringify(data));
+  if(data.from===$('#emailInput').val())
     $('#chat').append('<li class="blue left">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>')
+else {
+  $('#chat').append('<li class="green right">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>')
+}
+
+
 })
 
 
