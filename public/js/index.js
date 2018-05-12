@@ -53,9 +53,9 @@ socket.on('newLocationMessage',function(location){
   if($('#emailInput').val()==='')
     alert("cannot be empty");
     else {
-      var li = $('<li class="green right"></li>');
-      var a = $('<a target="_blank"> : My current location</a>');
-      li.text(`${location.from}`);
+      var li = $('<li class="blue left"></li>');
+      var a = $('<a target="_blank">My current location</a>');
+      li.text(`${location.from} : `);
       a.attr('href',location.url);
       li.append(a);
       $('#chat').append(li);
