@@ -3,6 +3,8 @@
 
 
 
+
+
 socket.on('connect',function(){
   console.log('im connected to server');
 })
@@ -10,9 +12,9 @@ socket.on('connect',function(){
 socket.on('newMessage',function(data){
 console.log(JSON.stringify(data));
   if(data.from===$('#emailInput').val())
-    $('#chat').append('<li class="blue left">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>')
+    $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>').hide().fadeIn(300)
 else {
-  $('#chat').append('<li class="green right">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>')
+  $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>').hide().fadeIn(300)
 }
 
 
@@ -53,33 +55,48 @@ socket.on('newLocationMessage',function(location){
   if($('#emailInput').val()==='')
     alert("cannot be empty");
     else {
+
       var li = $('<li class="blue left"></li>');
       var a = $('<a target="_blank">My current location</a>');
-      li.text(`${location.from} : `);
+      if($('#textInput').val()!='')
+      li.text(`${location.from} `+' : '+$('#textInput').val()+' ');
+      else
+      li.text(`${location.from}`+' : ');
       a.attr('href',location.url);
       li.append(a);
       $('#chat').append(li);
-    }
 
-})
+
+}})
 
 
 
 var gpsBtn = $('#sendLocation');
 gpsBtn.on('click',function(){
-  if ("geolocation" in navigator) {
+  $('#sendLocation').prop('disabled', true).text("Sending location ....");
 
+
+  if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(function(position){
       socket.emit('createLocationMessage',{
         user:$('#emailInput').val(),
         lat:position.coords.latitude,
         lng:position.coords.longitude
       })
+        $('#sendLocation').prop('disabled', false).text("Send location");
     },function(error){
       alert('Unable to share location' +error);
+        $('#sendLocation').prop('disabled', false).text("Send location");
     });
 } else {
   alert("something went wrong");
 }
+
+})
+
+$( "#chat" ).delegate( "li", "click",function(){
+  var msg = this;
+  $(this).find('span').fadeIn(500);
+
 
 })
