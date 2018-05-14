@@ -17,7 +17,7 @@ io.on('connection',(socket)=>{
   //io.emit send for all connections
   //socket.broadcast.emit for all connections except for the one submitted
     socket.emit('newMessage',generateMsg('Admin','Welcome To the chat Application'));
-    socket.broadcast.emit('newMessage',generateMsg('Admin:','new User signed in'));
+    socket.broadcast.emit('newMessage',generateMsg('Admin','new User signed in'));
     socket.on('createLocationMessage',(coords)=>{
       io.emit('newLocationMessage',generateLocationMessage(coords.user,coords.lat,coords.lng))
     })
@@ -28,7 +28,7 @@ io.on('connection',(socket)=>{
     socket.on('disconnect',()=>{
       console.log("Client disconnected");
     })
-    
+
 })
 
 server.listen(port,()=>{

@@ -24,21 +24,43 @@
       <form action="" id="emailForm">
         <input type="email" placeholder="Email address" id="emailInput">
         <input type="text" placeholder="text" id="textInput" autofocus autocomplete="off">
-        <input type="submit" value="submit" id='send'>
+        <input type="submit" value="Send" id='send'>
         <button id="sendLocation" type="button">Share my location</button>
       </form>
     </div>
-
-    <h1></h1>
-
-
-
   </div>
 
 
+  <script id='message-template' type="text/template">
+    <li class="msgField">
+      <div class="message__title">
+        <h4>{{from}}</h4>
+         <span>{{time}}</span>
+      </div>
 
+      <div class="message__body">
+        <p> {{text}}</p>
+      </div>
+
+    </li>
+  </script>
+  <script id='location-template' type="text/template">
+    <li class="msgField">
+
+        <div class="message__title">
+          <h4>{{from}}</h4>
+          <span>{{time}}</span>
+        </div>
+
+        <div class="message_body">
+          <a target="_blank" href={{url}}><img src="../imgs/location.png"/></a>
+        </div>
+     </li>
+  </script>
+  <script src="/js/mustache.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/index.js"></script>
   <script src="/js/moment.js"></script>
+
 </body>
 </html>

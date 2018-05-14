@@ -11,13 +11,27 @@ socket.on('connect',function(){
 
 socket.on('newMessage',function(data){
 console.log(JSON.stringify(data));
-var formattedTime = moment(data.createdAt).format('h:mm a');
-  if(data.from===$('#emailInput').val())
-    $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+formattedTime+'</span>'+'</li>').hide().fadeIn(300)
-else {
-  $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+formattedTime+'</span>'+'</li>').hide().fadeIn(300)
-}
 
+var formattedTime = moment(data.createdAt).format('h:mm a');
+var template = $('#message-template').html();
+var html = Mustache.render(template,{
+  from:data.from,
+  text:data.text,
+  time:formattedTime
+})
+$('#chat').append(html);
+$('.msgField:last-child').hide().slideDown(500);
+//   if(data.from===$('#emailInput').val())
+//     $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+formattedTime+'</span>'+'</li>').hide().fadeIn(300)
+// else {
+//   $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+formattedTime+'</span>'+'</li>').hide().fadeIn(300)
+// }
+
+if(data.from===$('#emailInput').val())
+  $('.msgField:last-child').addClass('red');
+if(data.from!=$('#emailInput').val()&&data.from!='Admin'){
+  $('.msgField:last-child').addClass('blue');
+}
 
 })
 
@@ -56,17 +70,32 @@ socket.on('newLocationMessage',function(location){
   if($('#emailInput').val()==='')
     alert("cannot be empty");
     else {
-      var formattedTime = moment(location.createdAt).format('h:mm A');
-      var li = $('<li class="msgField"></li>');
-      var a = $('<a target="_blank">My current location<span>'+formattedTime+'<span></a>');
-      if($('#textInput').val()!='')
-      li.text(`${location.from} `+' : '+$('#textInput').val()+' ');
-      else
-      li.text(`${location.from}`+' : ');
-      a.attr('href',location.url);
-      li.append(a);
-      $('#chat').append(li);
 
+      var formattedTime = moment(location.createdAt).format('h:mm a');
+      var template = $('#location-template').html();
+      var html = Mustache.render(template,{
+        from:location.from,
+        url:location.url,
+        time:formattedTime
+      })
+      $('#chat').append(html);
+      $('.msgField:last-child').hide().slideDown(500);
+      // var formattedTime = moment(location.createdAt).format('h:mm A');
+      // var li = $('<li class="msgField"></li>');
+      // var a = $('"/>'+'<span>'+formattedTime+'<span></a>');
+      // if($('#textInput').val()!='')
+      // li.text(`${location.from} `+' : '+$('#textInput').val()+' ');
+      // else
+      // li.text(`${location.from}`+' : ');
+      // a.attr('href',location.url);
+      // li.append(a);
+      // $('#chat').append(li);
+
+      if(location.from===$('#emailInput').val())
+        $('.msgField:last-child').addClass('red');
+    else{
+        $('.msgField:last-child').addClass('blue');
+      }
 
 }})
 
@@ -95,9 +124,9 @@ gpsBtn.on('click',function(){
 
 })
 
-$( "#chat" ).delegate( "li", "click",function(){
-  var msg = this;
-  $(this).find('span').fadeIn(500);
-
-
-})
+// $( "#chat" ).delegate( "li", "click",function(){
+//   var msg = this;
+//   $(this).find('span').fadeIn(500);
+//
+//
+// })

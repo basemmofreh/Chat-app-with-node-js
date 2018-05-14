@@ -13,10 +13,21 @@ span{
 }
 li{
   margin: 5px;
+  display: inline-block;
+  float: left;
+  clear: both;
+
 }
-span{
+
+.red{
+    color: #FF3D33;
+}
+.blue{
+  color:blue;
+}
+/* span{
   display: none;
-}
+} */
 .msgField{
   background-color: #f1f1f1;
   border-radius: .8em;
@@ -27,4 +38,24 @@ span{
   background-position: center;
   background-repeat: no-repeat;
 
+  }
+  #send{
+      transition: all .3s ;
+    background-color: #4DD864;
+    font-weight: 600;
+    color: white;
+  }
+  #send:hover{
+    background-color: white;
+    color: #4DD864;
+
+  }
+  #sendLocation{
+    transition: all .3s;
+    background-color: #0079FF;
+    color: white;
+  }
+  #sendLocation:hover{
+    color:#0079FF;
+    background-color: white;
   }
