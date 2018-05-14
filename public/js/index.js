@@ -11,10 +11,11 @@ socket.on('connect',function(){
 
 socket.on('newMessage',function(data){
 console.log(JSON.stringify(data));
+var formattedTime = moment(data.createdAt).format('h:mm a');
   if(data.from===$('#emailInput').val())
-    $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>').hide().fadeIn(300)
+    $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+formattedTime+'</span>'+'</li>').hide().fadeIn(300)
 else {
-  $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+data.createdAt+'</span>'+'</li>').hide().fadeIn(300)
+  $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+formattedTime+'</span>'+'</li>').hide().fadeIn(300)
 }
 
 
@@ -55,9 +56,9 @@ socket.on('newLocationMessage',function(location){
   if($('#emailInput').val()==='')
     alert("cannot be empty");
     else {
-
-      var li = $('<li class="blue left"></li>');
-      var a = $('<a target="_blank">My current location</a>');
+      var formattedTime = moment(location.createdAt).format('h:mm A');
+      var li = $('<li class="msgField"></li>');
+      var a = $('<a target="_blank">My current location<span>'+formattedTime+'<span></a>');
       if($('#textInput').val()!='')
       li.text(`${location.from} `+' : '+$('#textInput').val()+' ');
       else

@@ -7,7 +7,7 @@ describe('generate message',()=>{
         expect(typeof obj).toBe('object');
         expect(obj.from).toBe('basem mofreh');
         expect(obj.text).toBe('hello world!');
-        expect(typeof obj.createdAt).toBe('object');
+        expect(typeof obj.createdAt).toBe('number');
     })
 })
 
