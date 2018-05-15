@@ -11,6 +11,10 @@ span{
   -moz-border-radius: .9em;
   -webkit-border-radius:.9em;
 }
+#loc-icon{
+display: block;
+margin: 0 auto;
+}
 #sideBarImg{
   position: absolute;
   width: 10%;
