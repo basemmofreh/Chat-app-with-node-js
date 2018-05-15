@@ -2,6 +2,23 @@
   var emailForm = document.getElementById('emailForm');
 
 
+  function scrollToButtom(){
+    //selectors
+    var messages = $('#chat');
+    var newMessage =messages.children('li:last-child');
+    //heights
+    var clientHeight = messages.prop('clientHeight');
+    var scrollTop = messages.prop('scrollTop');
+    var scrollHeight = messages.prop('scrollHeight');
+    var newMessageHeight =newMessage.innerHeight();
+    var lastMessageHeight=newMessage.prev().innerHeight();
+    if(clientHeight+scrollTop+newMessageHeight+lastMessageHeight>=scrollHeight)
+      {
+        messages.scrollTop(scrollHeight);
+      }
+      $('.msgField:last-child').hide().slideDown(500);
+  }
+
 
 
 
@@ -9,7 +26,9 @@ socket.on('connect',function(){
   console.log('im connected to server');
 })
 
+//create new message
 socket.on('newMessage',function(data){
+  $.playSound("https://fsb.zobj.net/download/bY7mDjzPc8bbO55Nl6Ms4MBSs6PHvst99Aa41rESmtYBizTJ9qAMaU4CuhWlnY44GhENGWp2fXc405nB3LQjOtylsgaIl5mgonjN0BwNVP2Zl2NCCNK5B5I-b93g/?a=web&c=72&f=notification11.mp3&special=1526324948-KEGNl6mUNYZ1CCQAZ8F0GFMnBMrtShFvmjaL5htx8CI%3D");
 console.log(JSON.stringify(data));
 
 var formattedTime = moment(data.createdAt).format('h:mm a');
@@ -20,19 +39,16 @@ var html = Mustache.render(template,{
   time:formattedTime
 })
 $('#chat').append(html);
-$('.msgField:last-child').hide().slideDown(500);
-//   if(data.from===$('#emailInput').val())
-//     $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+formattedTime+'</span>'+'</li>').hide().fadeIn(300)
-// else {
-//   $('#chat').append('<li class="msgField">'+data.from+' : '+data.text+'<span>'+formattedTime+'</span>'+'</li>').hide().fadeIn(300)
-// }
 
+
+
+//give colors for your and others msgs
 if(data.from===$('#emailInput').val())
   $('.msgField:last-child').addClass('red');
 if(data.from!=$('#emailInput').val()&&data.from!='Admin'){
   $('.msgField:last-child').addClass('blue');
 }
-
+scrollToButtom();
 })
 
 
@@ -43,9 +59,8 @@ socket.on('disconnect',function(){
   console.log("server is down");
 });
 
-
+//submit form
 $('#emailForm').on('submit',function(e){
-
 e.preventDefault();
   // socket.on('createMessage',function(data){
   //   document.querySelector('.textMsg').innerHTML= 'From ' +data.email + ' Text : ' +data.text +' AT :'+' <p>'+data.time+ '</p>';
@@ -65,8 +80,9 @@ e.preventDefault();
 });
 
 
-
+// send location
 socket.on('newLocationMessage',function(location){
+  $.playSound("https://fsb.zobj.net/download/bY7mDjzPc8bbO55Nl6Ms4MBSs6PHvst99Aa41rESmtYBizTJ9qAMaU4CuhWlnY44GhENGWp2fXc405nB3LQjOtylsgaIl5mgonjN0BwNVP2Zl2NCCNK5B5I-b93g/?a=web&c=72&f=notification11.mp3&special=1526324948-KEGNl6mUNYZ1CCQAZ8F0GFMnBMrtShFvmjaL5htx8CI%3D");
   if($('#emailInput').val()==='')
     alert("cannot be empty");
     else {
@@ -79,28 +95,16 @@ socket.on('newLocationMessage',function(location){
         time:formattedTime
       })
       $('#chat').append(html);
-      $('.msgField:last-child').hide().slideDown(500);
-      // var formattedTime = moment(location.createdAt).format('h:mm A');
-      // var li = $('<li class="msgField"></li>');
-      // var a = $('"/>'+'<span>'+formattedTime+'<span></a>');
-      // if($('#textInput').val()!='')
-      // li.text(`${location.from} `+' : '+$('#textInput').val()+' ');
-      // else
-      // li.text(`${location.from}`+' : ');
-      // a.attr('href',location.url);
-      // li.append(a);
-      // $('#chat').append(li);
-
       if(location.from===$('#emailInput').val())
         $('.msgField:last-child').addClass('red');
     else{
         $('.msgField:last-child').addClass('blue');
       }
-
+scrollToButtom();
 }})
 
 
-
+//create location
 var gpsBtn = $('#sendLocation');
 gpsBtn.on('click',function(){
   $('#sendLocation').prop('disabled', true).text("Sending location ....");
@@ -123,10 +127,3 @@ gpsBtn.on('click',function(){
 }
 
 })
-
-// $( "#chat" ).delegate( "li", "click",function(){
-//   var msg = this;
-//   $(this).find('span').fadeIn(500);
-//
-//
-// })
