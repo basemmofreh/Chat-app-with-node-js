@@ -69,3 +69,8 @@ li{
     color:#0079FF;
     background-color: white;
   }
+  button,input{
+    border-radius: .9em;
+    -moz-border-radius: .9em;
+    -webkit-border-radius:.9em;
+  }
