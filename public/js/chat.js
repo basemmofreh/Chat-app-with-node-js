@@ -18,20 +18,6 @@
         messages.scrollTop(scrollHeight);
       }
 
-    //
-    // //selectors
-    // var messages = $('#chat');
-    // var newMessage = messages.children('li:last-child');
-    // //heights
-    // var clientHeight = messages.prop('clientHeight');
-    // var scrollTop = messages.prop('scrollTop');
-    // var scrollHeight = messages.prop('scrollHeight');
-    // var newMessageHeight = newMessage.innerHeight();
-    // var lastMessageHeight = newMessage.prev().innerHeight();
-    // if(clientHeight+scrollTop+newMessageHeight+lastMessageHeight>=scrollHeight)
-    //   {
-    //     messages.scrollTop(scrollHeight);
-    //   }
       $('.msgField:last-child').hide().slideDown(500);
   }
 
@@ -39,32 +25,38 @@
 
 
 socket.on('connect',function(){
-  console.log('im connected to server');
+    var params = $.deparam(window.location.search);
+    socket.emit('join',params,function(err){
+      if(err)
+        {
+          alert(err);
+          window.location.href='/';
+        }
+      else{
+        console.log('fine');
+      }
+    })
 })
 
 //create new message
 socket.on('newMessage',function(data){
-  $.playSound("../imgs/notif.mp3");
-console.log(JSON.stringify(data));
+    $.playSound("../imgs/notif.mp3");
+    var formattedTime = moment(data.createdAt).format('h:mm a');
+    var template = $('#message-template').html();
+    var html = Mustache.render(template,{
+      from:data.from,
+      text:data.text,
+      time:formattedTime
+    })
+    $('#chat').append(html);
 
-var formattedTime = moment(data.createdAt).format('h:mm a');
-var template = $('#message-template').html();
-var html = Mustache.render(template,{
-  from:data.from,
-  text:data.text,
-  time:formattedTime
-})
-$('#chat').append(html);
-
-
-
-//give colors for your and others msgs
-if(data.from===$('#emailInput').val())
-  $('.msgField:last-child').addClass('red');
-if(data.from!=$('#emailInput').val()&&data.from!='Admin'){
-  $('.msgField:last-child').addClass('blue');
-}
-scrollToButtom();
+    //give colors for your and others msgs
+    if(data.from===$('#emailInput').val())
+      $('.msgField:last-child').addClass('red');
+    if(data.from!=$('#emailInput').val()&&data.from!='Admin'){
+      $('.msgField:last-child').addClass('blue');
+    }
+    scrollToButtom();
 })
 
 
@@ -75,16 +67,26 @@ socket.on('disconnect',function(){
   console.log("server is down");
 });
 
+
+socket.on('updateUserList',function(users){
+
+var ol = $('<ol></ol>');
+users.forEach(function(user){
+  ol.append($('<li></li>').text(user));
+})
+
+$('#users').html(ol);
+  console.log('users connected',users);
+})
 //submit form
 $('#emailForm').on('submit',function(e){
 e.preventDefault();
   // socket.on('createMessage',function(data){
   //   document.querySelector('.textMsg').innerHTML= 'From ' +data.email + ' Text : ' +data.text +' AT :'+' <p>'+data.time+ '</p>';
   // })
-  if($('#textInput').val()===''||$('#emailInput').val()==='')
+  if($('#textInput').val()==='')
     alert("Cannot be empty");
   else {
-      $('#emailInput').hide();
     socket.emit('createMessage',{
       from:$('#emailInput').val(),
       text:$('#textInput').val()
