@@ -10,13 +10,13 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
   <title>Document</title>
-
   <script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
 </head>
 <body class="chat">
 
   <div class="chat__sidebar">
-    <h3> <img src="imgs/background_character.png" id="sideBarImg" alt="">Connected users</h3>
+
+    <h3><img src="imgs/profile.png" alt=""> <img src="imgs/background_character.png" id="sideBarImg" alt="">Connected<span>0<span></h3>
     <div id="users"></div>
   </div>
 
@@ -24,7 +24,7 @@
     <ol id="chat" class="chat__messages"></ol>
     <div class="chat__footer">
       <form action="" id="emailForm">
-        <input type="email" placeholder="Email address" id="emailInput">
+        <!-- <input type="email" placeholder="Email address" id="emailInput"> -->
         <input type="text" placeholder="text" id="textInput" autofocus autocomplete="off">
         <input type="submit" value="Send" id='send'>
         <button id="sendLocation" type="button">Share my location</button>
@@ -59,10 +59,13 @@
         </div>
      </li>
   </script>
+
   <script src="/js/mustache.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/deparam.js"></script>
   <script src="/js/chat.js"></script>
   <script src="/js/moment.js"></script>
+
 
 </body>
 </html>
