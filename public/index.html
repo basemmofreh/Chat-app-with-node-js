@@ -5,9 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/css/styles.css">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
   <title>Join | Chat app</title>
+  <style>#roomSpan{
+    float: left !important;
+      margin: 2px 5px;
+  }
+  .centered-form__form{
+  color: #FF3D33;
+
+  border-radius: 10%;
+  }
+  .centered-form__form button{
+    background-color: #FF3D33;
+  }
+  body{
+  background: #FF3D33 !important;
+  }
+</style>
 </head>
 <body class="centered-form">
+
     <div class="centered-form__form">
       <form action="/chat.html">
         <div class="form-field">
@@ -19,12 +40,58 @@
         </div>
         <div class="form-field">
           <label>Room name</label>
-          <input type="text" name="room">
+          <input type="text" name="room" id="roomData">
         </div>
         <div class="form-field">
           <button>Join</button>
         </div>
+
+
+              <select id="rooms">
+
+        </select>
+        <h4 id="roomSpan">Active rooms</h4>
       </form>
+      <!-- <ol id="rooms">
+
+      </ol> -->
+
+
     </div>
+
+
+
+
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+      var socket = io();
+      socket.on('connect',function(){
+        socket.on('activeRooms',function(rooms){
+          console.log(rooms);
+            if(rooms.length!=0)
+            {
+                uniqueArray = rooms.filter(function(elem, pos) {
+                return rooms.indexOf(elem) == pos;
+                })
+
+                var ol = $('#rooms');
+                ol.empty();
+                uniqueArray.forEach(function(user)
+                  {
+                      ol.append($('<option></option>').text(user).html(user));
+                  })
+                $('#rooms').on('click',function(){
+                  var setValue = $('#rooms option:selected').text();
+                  $('#roomData').val(setValue);
+                })
+            }
+            else {
+              var ol = $('#rooms');
+              ol.empty();
+            }
+        });
+      })
+
+    </script>
 </body>
 </html>

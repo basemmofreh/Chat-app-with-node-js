@@ -32,14 +32,13 @@ socket.on('connect',function(){
           alert(err);
           window.location.href='/';
         }
-      else{
-        console.log('fine');
-      }
+
     })
 })
 
 //create new message
 socket.on('newMessage',function(data){
+    var currentUser = $.deparam(window.location.search).name;
     $.playSound("../imgs/notif.mp3");
     var formattedTime = moment(data.createdAt).format('h:mm a');
     var template = $('#message-template').html();
@@ -51,10 +50,10 @@ socket.on('newMessage',function(data){
     $('#chat').append(html);
 
     //give colors for your and others msgs
-    if(data.from===$('#emailInput').val())
+     if(data.from==currentUser)
       $('.msgField:last-child').addClass('red');
-    if(data.from!=$('#emailInput').val()&&data.from!='Admin'){
-      $('.msgField:last-child').addClass('blue');
+    if(data.from!=currentUser&&data.from!='Admin'){
+       $('.msgField:last-child').addClass('blue');
     }
     scrollToButtom();
 })
@@ -76,7 +75,7 @@ users.forEach(function(user){
 })
 
 $('#users').html(ol);
-  console.log('users connected',users);
+$('.chat__sidebar h3 span').text(users.length);
 })
 //submit form
 $('#emailForm').on('submit',function(e){
@@ -88,11 +87,9 @@ e.preventDefault();
     alert("Cannot be empty");
   else {
     socket.emit('createMessage',{
-      from:$('#emailInput').val(),
       text:$('#textInput').val()
     },function(){
       $('#textInput').val("");
-      console.log('Sent at : ',new Date().toString());
     });
   }
 });
@@ -100,10 +97,9 @@ e.preventDefault();
 
 // send location
 socket.on('newLocationMessage',function(location){
+    var currentUser = $.deparam(window.location.search).name;
   $.playSound("../imgs/notif.mp3");
-  if($('#emailInput').val()==='')
-    alert("cannot be empty");
-    else {
+
 
       var formattedTime = moment(location.createdAt).format('h:mm a');
       var template = $('#location-template').html();
@@ -113,13 +109,13 @@ socket.on('newLocationMessage',function(location){
         time:formattedTime
       })
       $('#chat').append(html);
-      if(location.from===$('#emailInput').val())
+      if(location.from===currentUser)
         $('.msgField:last-child').addClass('red');
     else{
         $('.msgField:last-child').addClass('blue');
       }
 scrollToButtom();
-}})
+})
 
 
 //create location
@@ -131,7 +127,6 @@ gpsBtn.on('click',function(){
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(function(position){
       socket.emit('createLocationMessage',{
-        user:$('#emailInput').val(),
         lat:position.coords.latitude,
         lng:position.coords.longitude
       })

@@ -13,7 +13,7 @@ class Users {
     var remID = this.getUser(id);
     if(remID)
      {
-       this.users = this.users.filter((remID)=>remID.id!=id);
+        this.users = this.users.filter((remID)=>remID.id!=id);
       }
     return remID;
   }
@@ -30,6 +30,12 @@ class Users {
       return namesArray;
   }
 
+  getActiveRooms(){
+    var rooms = this.users.map((user)=>{
+      return user.room;
+    })
+    return rooms;
+  }
 }
 
 
