@@ -1,0 +1,131 @@
+[33mcommit 47448e2c38bc6f23429b7e1856d3d5cc19fd9f77[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31mheroku/master[m[33m)[m
+Author: Bassem <AnError@live.com>
+Date:   Tue May 15 06:16:34 2018 -0800
+
+    THis is last working version before tesing handlerbars 2
+
+[33mcommit feb7aa3e3c6623ed8c13ac56d24d9b5f01aabff1[m
+Author: Bassem <AnError@live.com>
+Date:   Tue May 15 06:16:16 2018 -0800
+
+    THis is last working version before tesing handlerbars
+
+[33mcommit 3dfb8ac6b0fea62391b20c61bced9a04bf5a498a[m
+Author: Bassem <AnError@live.com>
+Date:   Mon May 14 22:33:01 2018 -0800
+
+     Auto scroll along side notification sound
+
+[33mcommit ae71561e95fb3322f6690bb4f86f7f09bcb20aa9[m
+Author: Bassem <AnError@live.com>
+Date:   Mon May 14 06:14:46 2018 -0800
+
+    Add mustache.js for message templates
+
+[33mcommit 0bb528b524cebb6f1e92868d406ad3fcbc2de398[m
+Author: Bassem <AnError@live.com>
+Date:   Mon May 14 02:19:57 2018 -0800
+
+     Adding timestamp to messages
+
+[33mcommit b0595b5d5fa6996fb24b9826e4a322d627dac47d[m
+Author: Bassem <AnError@live.com>
+Date:   Sat May 12 21:03:52 2018 -0800
+
+    Styles added
+
+[33mcommit 9fc5b69fdba056a869a103f2d783e01ddc39ffbd[m
+Author: Bassem <AnError@live.com>
+Date:   Fri May 11 18:42:31 2018 -0800
+
+    add geolocation support via geolocation api and testing sweat
+
+[33mcommit e886e5c6cef32d515aa7cd549e298817c06c4967[m
+Author: Bassem <AnError@live.com>
+Date:   Fri May 11 16:58:18 2018 -0800
+
+    Updated chat width to 80%
+
+[33mcommit 53ead8173126d61c4c13dbb71a8b3bbb39630e40[m
+Author: Bassem <AnError@live.com>
+Date:   Fri May 11 16:28:51 2018 -0800
+
+    Updated chat width to 80%
+
+[33mcommit 75d212b8891927ef999a9c41244236b37de6ae70[m
+Author: Bassem <AnError@live.com>
+Date:   Wed May 9 21:03:12 2018 -0800
+
+    updated again
+
+[33mcommit 0d78d70bb87b448bc873a697c3efcd9e992c28fe[m
+Author: Bassem <AnError@live.com>
+Date:   Wed May 9 20:55:41 2018 -0800
+
+    deployed maps
+
+[33mcommit fac3e3a8e1ca58376520abd7db38ec604cf5bcc9[m
+Author: Bassem <AnError@live.com>
+Date:   Tue May 8 22:30:48 2018 -0800
+
+    more design tweaks
+
+[33mcommit b41f66e5768c302d0ee495aa68ddc561186ce6c2[m
+Author: Bassem <AnError@live.com>
+Date:   Tue May 8 17:59:05 2018 -0800
+
+    add form for messages and show incoming msgs in brower
+
+[33mcommit 77ca70e02840c910a81665babca5e26c7a77c8ff[m
+Author: Bassem <AnError@live.com>
+Date:   Tue May 8 12:45:51 2018 -0800
+
+    Generate message utility
+
+[33mcommit 5b8693a119196357b43770d36dc8b319b02af7e4[m
+Author: Bassem <AnError@live.com>
+Date:   Mon May 7 15:02:05 2018 -0800
+
+    create new user , and alert others
+
+[33mcommit cdd1de777d34928372f686ac90d12e1eeceb2cc7[m
+Author: Bassem <AnError@live.com>
+Date:   Sun May 6 17:51:40 2018 -0800
+
+    emit newMessage on createMessage;
+
+[33mcommit f6629d84f8ff3f58b7f1e6738987c38cf1b2da9e[m
+Author: Bassem <AnError@live.com>
+Date:   Sat May 5 14:51:48 2018 -0800
+
+     add newMessage and createMessage events 2
+
+[33mcommit a80bb8f6ff716ecc76bc993abe8190f5abe62889[m
+Author: Bassem <AnError@live.com>
+Date:   Sat May 5 14:51:28 2018 -0800
+
+     add newMessage and createMessage events
+
+[33mcommit 4c2c63eb25ea02403d63fbba98740064fe1b91f4[m
+Author: Bassem <AnError@live.com>
+Date:   Fri May 4 13:37:19 2018 -0800
+
+    Add connect and disconnect event handlers
+
+[33mcommit 3ed2c1061a5e9afbea38b89b6bc7e7c951e3a19a[m
+Author: Bassem <AnError@live.com>
+Date:   Fri May 4 10:08:31 2018 -0800
+
+    First commit 3
+
+[33mcommit aac1db5757ea36b98ba9ef775c79753163b1d3c5[m
+Author: Bassem <AnError@live.com>
+Date:   Fri May 4 10:05:18 2018 -0800
+
+    First commit 2
+
+[33mcommit 2956ba2c303655c48be7dec26d60dcd855444cd8[m
+Author: Bassem <AnError@live.com>
+Date:   Fri May 4 09:59:02 2018 -0800
+
+    First commit
