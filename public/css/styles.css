@@ -57,7 +57,7 @@ li{
   #send{
       transition: all .3s ;
     background-color: #4DD864;
-    font-weight: 600;
+    /* font-weight: 600; */
     color: white;
   }
   #send:hover{

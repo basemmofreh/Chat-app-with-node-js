@@ -9,6 +9,10 @@ class Users {
       return user;
   }
 
+  showExistUser(name){
+      var search = this.users.filter((user)=>user.name===name);
+      return search[0];
+  }
   removeUser(id){
     var remID = this.getUser(id);
     if(remID)

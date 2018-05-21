@@ -4,19 +4,32 @@
   function scrollToButtom(){
 
     //selectors
-    var messages = $('#chat');
-    var newMessage = messages.children('li:last-child');
-    //height
-    var clientHeight = messages.prop('clientHeight');
-    var scrollTop = messages.prop('scrollTop');
-    var scrollHeight = messages.prop('scrollHeight');
-    var newMessageHeight = newMessage.innerHeight();
-    var lastMessageHeight = newMessage.prev().innerHeight();
 
-    if(scrollTop+clientHeight+newMessageHeight+lastMessageHeight>=scrollHeight)
-      {
-        messages.scrollTop(scrollHeight);
-      }
+      var messages = $('#chat');
+      // var newMessage = messages.children('li:last-child');
+      //
+      // //height
+      // var clientHeight = messages.prop('clientHeight');
+      var scrollHeight = messages.prop('scrollHeight');
+      // var scrollTop = messages.prop('scrollTop');
+      // var newMessageHeight = newMessage.innerHeight();
+      // var lastNewMessage = newMessage.prev().innerHeight();
+      //
+      // if(clientHeight+scrollTop+newMessageHeight+lastNewMessage+150>=scrollHeight)
+      messages.scrollTop(scrollHeight);
+    // var messages = $('#chat');
+    // var newMessage = messages.children('li:last-child');
+    // //height
+    // var clientHeight = messages.prop('clientHeight');
+    // var scrollTop = messages.prop('scrollTop');
+    // var scrollHeight = messages.prop('scrollHeight');
+    // var newMessageHeight = newMessage.innerHeight();
+    // var lastMessageHeight = newMessage.prev().innerHeight();
+    //
+    // if(scrollTop+clientHeight+newMessageHeight+lastMessageHeight>=scrollHeight)
+    //   {
+    //     messages.scrollTop(scrollHeight);
+    //   }
 
       $('.msgField:last-child').hide().slideDown(500);
   }

@@ -20,7 +20,12 @@ io.on('connection',(socket)=>{
 
     socket.on('join',(params,callback)=>{
         if(!isRealstr(params.name)||!isRealstr(params.room))
+        {
         return callback("Name or room is invalid");
+        }
+        else if (users.showExistUser(params.name)){
+          return callback("username already exist");
+        }
         socket.join(params.room);
         users.removeUser(socket.id);
         users.addUsers(socket.id,params.name,params.room);
