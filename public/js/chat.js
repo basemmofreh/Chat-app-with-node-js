@@ -6,17 +6,17 @@
     //selectors
 
       var messages = $('#chat');
-      var newMessage = messages.children('li:last-child');
+      // var newMessage = messages.children('li:last-child');
       //
       // //height
       // var clientHeight = messages.prop('clientHeight');
       var scrollHeight = messages.prop('scrollHeight');
       // var scrollTop = messages.prop('scrollTop');
-       var newMessageHeight = newMessage.innerHeight();
+      // var newMessageHeight = newMessage.innerHeight();
       // var lastNewMessage = newMessage.prev().innerHeight();
       //
       // if(clientHeight+scrollTop+newMessageHeight+lastNewMessage+150>=scrollHeight)
-      messages.scrollTop(scrollHeight+newMessageHeight);
+      messages.scrollTop(scrollHeight);
     // var messages = $('#chat');
     // var newMessage = messages.children('li:last-child');
     // //height
